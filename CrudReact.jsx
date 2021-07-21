@@ -1,6 +1,18 @@
 import React, { useState } from 'react';
 import DummyData from './DummuData';
 
+// importing material-ui  design
+import { Button,Input,Table,Container,Box } from '@material-ui/core';
+
+// importion material-ui icons
+import DeleteIcon from '@material-ui/icons/Delete';
+import UpdateIcon from '@material-ui/icons/Update';
+
+import { Form  } from 'react-bootstrap';
+ 
+
+
+
 
 
 let CrudReact=()=>{
@@ -16,7 +28,6 @@ let CrudReact=()=>{
     }
     );
 
-    // let [updateSubmit,setUpdateSubmit]=useState(false);
 
 
     let handleInput=(event)=>{
@@ -118,15 +129,33 @@ let CrudReact=()=>{
                        <td>{last_name}</td>
                        <td>{email}</td>
                        <td>{mobile}</td>
-                       <td><button onClick={()=>{updateList(id)}}>Update</button></td>
-                       <td><button onClick={()=>{deleteList(id)}}>Delete</button></td>
+                    
+                       <td>   <Button
+                            variant="contained"
+                            color="primary"
+                            startIcon={<UpdateIcon />}  onClick={()=>{updateList(id)}}
+                        >
+                            Update
+                    </Button></td>
+  
+     <td>
+                    <Button
+                            variant="contained"
+                            color="secondary"
+                            startIcon={<DeleteIcon />}  onClick={()=>{deleteList(id)}}
+                        >
+                            Delete
+                    </Button>
+
+</td>
                    </tr>
         }
 
 
         return(<>
                 <div>
-                    <table border="1" cellPadding="5" cellSpacing="4">
+                <Container>
+                    <Table border="1" style={{textAlign:"center"}}>
                         <thead>
                                 <th>No</th>
                                 <th>First Name</th>
@@ -141,23 +170,39 @@ let CrudReact=()=>{
                                       return  <RowList id={index} key={index} first_name={value.first_name} last_name={value.last_name} email={value.email} mobile={value.mobile}/>
                                 })}
                         </tbody>
-                    </table>
+                    </Table>
+                    </Container>    
                 </div>
         </>)
     }
 
-
-
-
-    return(
+ 
+ 
+ 
+    return( 
         <>      
                   <div>
-                    <input type="text" value={temp.first_name} name="first_name" onChange={handleInput}  placeholder="First Name"/>
-                    <input type="text" value={temp.last_name} name="last_name" onChange={handleInput}  placeholder="Last Name"/>
-                    <input type="text" value={temp.email} name="email" onChange={handleInput}  placeholder="Email"/>
-                    <input type="text" value={temp.mobile} name="mobile" onChange={handleInput}  placeholder="Mobile"/>
-                    <input type="button" onClick={submitForm} value="Submit" />
-                    {/* <input type="button" onClick={updateForm} value="Update" />  */}
+                  <Container style={{border:"1px solid black",padding:"40px"}}> 
+                   
+                    <Box  m={1} >  
+                            <Input  variant="outlined"  style={{padding:'0px'}} type="text" value={temp.first_name} name="first_name" onChange={handleInput}  placeholder="First Name"/> 
+                    </Box>  
+                    <Box ml={1}>
+                            <Input  variant="outlined"  style={{padding:'0px'}}  type="text" value={temp.last_name}  name="last_name" onChange={handleInput}  placeholder="Last Name"/>
+                    </Box>
+
+                    <Box  m={1} > 
+                    <Input  variant="outlined"  style={{padding:'0px'}} type="text" value={temp.email} name="email" onChange={handleInput}  placeholder="Email"/>
+                    </Box>  
+                    <Box  m={1} > 
+                    <Input variant="outlined"  style={{padding:'0px'}}  type="text" value={temp.mobile} name="mobile" onChange={handleInput}  placeholder="Mobile"/>
+                    </Box>  
+
+
+                    <Button variant="contained" color="primary" type="button" onClick={submitForm} value="Submit" >Submit</Button>
+
+
+                    </Container>  
                 </div>
                 <TableList />
 
